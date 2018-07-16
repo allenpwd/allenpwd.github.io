@@ -1,5 +1,54 @@
 <html>
 <body>
-  <p>hello world!
+  <div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="https://www.cnblogs.com/flora5/p/7152556.html">Git与Github的连接与使用</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body"><p>&nbsp;</p>
+<p>下面继续，使用git 将项目上传到GitHub上</p>
+<p>首先要有GitHub账号,这就不用说了，没有的先注册，地址：<a href="https://github.com/" target="_blank">https://github.com</a>&nbsp;</p>
+<p>没有仓库的话，先新创建一个仓库</p>
+<p><img src="https://images2015.cnblogs.com/blog/1192146/201707/1192146-20170711180300993-19531117.png" alt=""></p>
+<p>填写新仓库名称，备注信息。点击创建即可完成。</p>
+<p>&nbsp;</p>
+<p><img src="https://images2015.cnblogs.com/blog/1192146/201707/1192146-20170711180434525-1461384261.png" alt=""></p>
+<p>创建完成会显示如下界面。先放置不用管。后面会用到</p>
+<p>&nbsp;</p>
+<p><img src="https://images2015.cnblogs.com/blog/1192146/201707/1192146-20170711180601197-948815634.jpg" alt=""></p>
+<p>&nbsp;</p>
+<p>因为本地Git仓库和GitHub仓库之间的传输是通过SSH加密传输的，GitHub需要识别是否是你推送，GitHub只要知道了你的公钥，就可以确认只有你自己才能推送，所以需要配置ssh key。</p>
+<p>1.创建SSH Key。</p>
+<p>在用户主目录（C:\Users\Administrator）下，看看有没有.ssh文件，如果有，再看文件下有没有<code>id_rsa</code>和<code>id_rsa.pub</code>这两个文件，如果已经有了，可直接到下一步。如果没有，打开Git Bash，输入命令，创建SSH Key</p>
+<div class="cnblogs_Highlighter sh-gutter">
+<div><div id="highlighter_250573" class="syntaxhighlighter  csharp"><div class="toolbar"><span><a href="#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="csharp plain">$ ssh-keygen -t rsa -C </code><code class="csharp string">"123@126.com"</code> <code class="csharp comments">//123 是你自己注册GitHub的邮箱</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p>直接回车就哦了</p>
+<p><img src="https://images2015.cnblogs.com/blog/1192146/201707/1192146-20170714173049337-699715656.png" alt=""></p>
+<p>出现上图，就说创建成功啦，再去用户主目录里找到<code>.ssh</code>文件夹，里面有<code>id_rsa</code>和<code>id_rsa.pub</code>两个文件，这两个就是SSH Key的秘钥对，<code>id_rsa</code>是私钥，不能泄露，<code>id_rsa.pub</code>是公钥，可以公开。</p>
+<p>&nbsp;</p>
+<p>2.接下来到GitHub上，打开“Account settings”--“SSH Keys”页面，然后点击“Add SSH Key”，填上Title（随意写），在Key文本框里粘贴&nbsp;<code>id_rsa.pub</code>文件里的全部内容。</p>
+<p><img src="https://images2015.cnblogs.com/blog/1192146/201707/1192146-20170714173851775-474031887.png" alt=""></p>
+<p>点“Add Key”，你就应该看到已经添加的Key，可以添加多个Key</p>
+<p><img src="https://images2015.cnblogs.com/blog/1192146/201707/1192146-20170714174315025-1450935601.png" alt=""></p>
+<p>&nbsp;</p>
+<p>3.验证是否成功，在git bash里输入下面的命令</p>
+<div class="cnblogs_Highlighter sh-gutter">
+<div><div id="highlighter_687381" class="syntaxhighlighter  csharp"><div class="toolbar"><span><a href="#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="csharp plain">$ ssh -T git@github.com</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p>如果初次设置的话，会出现如下界面，输入yes 同意即可</p>
+<p><img src="https://images2015.cnblogs.com/blog/1192146/201707/1192146-20170714175422400-33988795.png" alt=""></p>
+<p>4.下面开始设置username和email，因为github每次commit都会记录他们</p>
+<div class="cnblogs_Highlighter sh-gutter">
+<div><div id="highlighter_719231" class="syntaxhighlighter  csharp"><div class="toolbar"><span><a href="#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="csharp plain">$ git config --global user.name&nbsp; </code><code class="csharp string">"name"</code><code class="csharp comments">//你的GitHub登陆名</code></div><div class="line number2 index1 alt1"><code class="csharp plain">$ git config --global user.email </code><code class="csharp string">"123@126.com"</code><code class="csharp comments">//你的GitHub注册邮箱</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p>5.接下来就是把本地仓库传到github上去，之前在GitHub上建好一个新的仓库是，跳转的页面，完全按照上面的只是操作就可以了。</p>
+<p>&nbsp;</p>
+<div class="cnblogs_Highlighter sh-gutter">
+<div><div id="highlighter_321352" class="syntaxhighlighter  csharp"><div class="toolbar"><span><a href="#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="csharp plain">$ git remote add origin git@github.com:flora0103/example.git&nbsp;&nbsp;&nbsp; </code><code class="csharp comments">//关联一个远程库命令， git@github.com:flora0103/example.git&nbsp;&nbsp; 这个是自己远程库</code></div><div class="line number2 index1 alt1"><code class="csharp plain">git push -u origin master&nbsp;&nbsp;&nbsp; </code><code class="csharp comments">//关联后,第一次推送master分支的所有内容命令，此后，每次本地提交后，就可以使用命令git push origin master推送最新修改</code></div></div></td></tr></tbody></table></div></div>
+</div>
+</div>
+    </div>
 </body>
 </html>
