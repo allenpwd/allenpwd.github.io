@@ -1,0 +1,84 @@
+@charset "utf-8";
+/* CSS Document */
+
+#main{
+}
+
+h1{
+	margin:10px auto;
+	text-align:center;
+	color:#c90
+}
+
+table{	
+	background-color:#999;
+	text-align:center;
+	margin:10px auto;
+	padding:0;
+	
+}
+
+td{
+	position:relative;
+	left:-5px;
+	top:-5px;
+	font-family:楷体;
+	font-size:30px;
+	background-color:#CCC;
+	width:80px;
+	height:80px;
+	border:#888 solid 2px;
+}
+
+.bg2{
+	background-color:#eee4da;
+}
+
+.bg4{
+	background-color:#ece0c8;
+}
+
+.bg8{
+	color:#FFF;
+	background-color:#f2b179;
+}
+
+.bg16{
+	color:#FFF;
+	background-color:#f59563;
+}
+
+.bg32{
+	color:#FFF;
+	background-color:#f57c5f;
+}
+
+.bg64{
+	color:#FFF;
+	background-color:#f65d3b
+}
+
+.bg128{
+	color:#FFF;
+	background-color:#edce71;
+}
+
+.bg256{
+	color:#FFF;
+	background-color:#edcc61
+}
+
+.bg512{
+	color:#FFF;
+	background-color:#ecc850;
+}
+
+.bg1024{
+	color:#FFF;
+	background-color:#edc53f;
+}
+
+.bg2048{
+    color:#fff7eb;
+    background:#eec22e;
+}
